@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class CardDeliveryTest {
+public class FeedbackFormTest {
     Faker faker = new Faker(new Locale("ru"));
     String customerName = faker.name().firstName() + " " + faker.name().lastName();
     String customerPhone = faker.phoneNumber().phoneNumber();
