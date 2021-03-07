@@ -17,6 +17,10 @@ dependencies {
     testImplementation(group: 'com.codeborne', name: 'selenide', version: '5.14.2');
     testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
     testImplementation 'com.github.javafaker:javafaker:1.0.2';
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
 test {
