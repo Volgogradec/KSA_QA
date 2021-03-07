@@ -46,6 +46,6 @@ public class FeedbackFormTest {
     @Test
     void sendOptimaGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormOptima(1);
+        actionForm.sendFormOptima(5);
     }
 }

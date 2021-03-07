@@ -38,9 +38,10 @@ public class ActionForm {
             form.$("input[name=your-name]").setValue(customerName);
             form.$("input[name=your-email]").setValue(customerEmail);
             form.$("textarea[name=your-message]").setValue("Нужна подсистема для керамогранита");
-            Thread.sleep(15000);
+            Thread.sleep(10000);
             form.$("input[type=submit]").click();
-            $(".wpcf7-response-output").waitUntil(visible, 500).shouldHave(text("Ваше сообщение было отправлено, Спасибо!"));
+            Thread.sleep(1000);
+            $(".wpcf7-response-output").shouldHave(text("Ваше сообщение было отправлено, Спасибо!"));
         }
     }
 }
