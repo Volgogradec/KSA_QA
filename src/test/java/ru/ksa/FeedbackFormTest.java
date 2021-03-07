@@ -1,8 +1,7 @@
-package ru.netology;
+package ru.ksa;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
-import com.github.javafaker.PhoneNumber;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
