@@ -40,7 +40,7 @@ public class ActionForm {
             form.$("textarea[name=your-message]").setValue("Нужна подсистема для керамогранита");
             Thread.sleep(15000);
             form.$("input[type=submit]").click();
-            $(".wpcf7-response-output").waitUntil(visible, 15000).shouldHave(text("Ваше сообщение было отправлено, Спасибо!"));
+            $(".wpcf7-response-output").waitUntil(visible, 500).shouldHave(text("Ваше сообщение было отправлено, Спасибо!"));
         }
     }
 }
