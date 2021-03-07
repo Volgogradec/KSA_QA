@@ -1,21 +1,49 @@
 package ru.netology;
 
-import org.junit.jupiter.api.Test;
 import com.codeborne.selenide.SelenideElement;
+import com.github.javafaker.Faker;
+import com.github.javafaker.PhoneNumber;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CardDeliveryTest {
+    Faker faker = new Faker(new Locale("ru"));
+    String customerName = faker.name().firstName() + " " + faker.name().lastName();
+    String customerPhone = faker.phoneNumber().phoneNumber();
 
     String meetingDay(int day){
         return LocalDate.now().plusDays(day).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
+
+    @Test
+    void sendHardCodeData() {
+        open("https://vicolor-msk.ru/kontakty/");
+        SelenideElement form = $("form.form-contacts__form.feedback");
+        form.$("input[name=form_name]").setValue("Анатолий");
+        form.$("input[name=form_phone]").setValue("9642682654");
+        form.$("textarea[name=form_message]").setValue("Сообщение по заявке");
+        form.$("button[type=submit]").click();
+        $(".feedback-send-message").waitUntil(visible, 500);
+    }
+
+    @Test
+    void sendGeneratedData() {
+        open("https://vicolor-msk.ru/kontakty/");
+        SelenideElement form = $("form.form-contacts__form.feedback");
+        form.$("input[name=form_name]").setValue(customerName);
+        form.$("input[name=form_phone]").setValue(customerPhone);
+        form.$("textarea[name=form_message]").setValue("Пример текста");
+        form.$("button[type=submit]").click();
+        $(".feedback-send-message").waitUntil(visible, 500);
     }
 
     @Test
@@ -25,7 +53,7 @@ public class CardDeliveryTest {
         form.$("[data-test-id='city'] input").setValue("Волгоград");
         form.$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         form.$("[data-test-id='date'] input").setValue(meetingDay(5));
-        form.$("[data-test-id='name'] input").setValue("Дмитрий Евдокимов");
+        form.$("[data-test-id='name'] input").setValue("Анатолий");
         form.$("[data-test-id='phone'] input").setValue("+79642682654");
         form.$("[data-test-id='agreement']").click();
         form.$(".button__content").click();
@@ -38,90 +66,11 @@ public class CardDeliveryTest {
         SelenideElement form = $("[action='/']");
         form.$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         form.$("[data-test-id='date'] input").setValue(meetingDay(3));
-        form.$("[data-test-id='name'] input").setValue("Дмитрий Евдокимов");
+        form.$("[data-test-id='name'] input").setValue("Анатолий");
         form.$("[data-test-id='phone'] input").setValue("+79642682654");
         form.$("[data-test-id='agreement']").click();
         form.$(".button__content").click();
         form.$("[data-test-id='city'].input_invalid .input__sub").shouldBe(visible).shouldHave(text("Поле обязательно для заполнения"));
     }
 
-    @Test
-    void testNegativeCityNotValid(){
-        open("http://localhost:9999/");
-        SelenideElement form = $("[action='/']");
-        form.$("[data-test-id='city'] input").setValue("Волгоград1");
-        form.$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        form.$("[data-test-id='date'] input").setValue(meetingDay(3));
-        form.$("[data-test-id='name'] input").setValue("Дмитрий Евдокимов");
-        form.$("[data-test-id='phone'] input").setValue("+79642682654");
-        form.$("[data-test-id='agreement']").click();
-        form.$(".button__content").click();
-        form.$("[data-test-id='city'] .input__sub").shouldBe(visible).shouldHave(text("Доставка в выбранный город недоступна"));
-    }
-
-    @Test
-    void testNegativeDateEmpty(){
-        open("http://localhost:9999/");
-        SelenideElement form = $("[action='/']");
-        form.$("[data-test-id='city'] input").setValue("Волгоград");
-        form.$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        form.$("[data-test-id='name'] input").setValue("Дмитрий Евдокимов");
-        form.$("[data-test-id='phone'] input").setValue("+79642682654");
-        form.$("[data-test-id='agreement']").click();
-        form.$(".button__content").click();
-        form.$("[data-test-id='date'] .input__sub").shouldBe(visible).shouldHave(text("Неверно введена дата"));
-    }
-
-    @Test
-    void testNegativeDateLess3day(){
-        open("http://localhost:9999/");
-        SelenideElement form = $("[action='/']");
-        form.$("[data-test-id='city'] input").setValue("Волгоград");
-        form.$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        form.$("[data-test-id='date'] input").setValue(meetingDay(2));
-        form.$("[data-test-id='name'] input").setValue("Дмитрий Евдокимов");
-        form.$("[data-test-id='phone'] input").setValue("+79642682654");
-        form.$("[data-test-id='agreement']").click();
-        form.$(".button__content").click();
-        form.$("[data-test-id='date'] .input__sub").shouldBe(visible).shouldHave(text("Заказ на выбранную дату невозможен"));
-    }
-
-    @Test
-    void testNegativeNameEmpty(){
-        open("http://localhost:9999/");
-        SelenideElement form = $("[action='/']");
-        form.$("[data-test-id='city'] input").setValue("Волгоград");
-        form.$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        form.$("[data-test-id='date'] input").setValue(meetingDay(3));
-        form.$("[data-test-id='phone'] input").setValue("+79642682654");
-        form.$("[data-test-id='agreement']").click();
-        form.$(".button__content").click();
-        form.$("[data-test-id='name'] .input__sub").shouldBe(visible).shouldHave(text("Поле обязательно для заполнения"));
-    }
-
-    @Test
-    void testNegativePhoneEmpty(){
-        open("http://localhost:9999/");
-        SelenideElement form = $("[action='/']");
-        form.$("[data-test-id='city'] input").setValue("Волгоград");
-        form.$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        form.$("[data-test-id='date'] input").setValue(meetingDay(7));
-        form.$("[data-test-id='name'] input").setValue("Дмитрий Евдокимов");
-        form.$("[data-test-id='agreement']").click();
-        form.$(".button__content").click();
-        form.$("[data-test-id='phone'] .input__sub").shouldBe(visible).shouldHave(text("Поле обязательно для заполнения"));
-    }
-
-    @Test
-    void testNegativeAgreementEmpty(){
-        open("http://localhost:9999/");
-        SelenideElement form = $("[action='/']");
-        form.$("[data-test-id='city'] input").setValue("Волгоград");
-        form.$("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        form.$("[data-test-id='date'] input").setValue(meetingDay(3));
-        form.$("[data-test-id='name'] input").setValue("Дмитрий Евдокимов");
-        form.$("[data-test-id='phone'] input").setValue("+79642682654");
-        form.$(".button__content").click();
-        form.$("[data-test-id='agreement'].input_invalid").shouldBe(visible).shouldHave(text("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
-    }
 }
