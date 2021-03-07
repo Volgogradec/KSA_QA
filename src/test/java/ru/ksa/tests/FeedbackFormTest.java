@@ -4,8 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -39,4 +37,9 @@ public class FeedbackFormTest {
         $(".feedback-send-message").waitUntil(visible, 500);
     }
 
+    @Test
+    void sendVicolorGeneratedDataCycle() {
+        ActionForm actionForm = new ActionForm();
+        actionForm.sendFormVicolor(1);
+    }
 }
