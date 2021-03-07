@@ -42,4 +42,10 @@ public class FeedbackFormTest {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormVicolor(1);
     }
+
+    @Test
+    void sendOptimaGeneratedDataCycle() throws InterruptedException {
+        ActionForm actionForm = new ActionForm();
+        actionForm.sendFormOptima(1);
+    }
 }
