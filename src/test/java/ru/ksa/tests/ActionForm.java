@@ -20,7 +20,7 @@ public class ActionForm {
             SelenideElement form = $("form.form-contacts__form.feedback");
             form.$("input[name=form_name]").setValue(customerName);
             form.$("input[name=form_phone]").setValue(customerPhone);
-            form.$("textarea[name=form_message]").setValue("Пример текста");
+            form.$("textarea[name=form_message]").setValue("Сообщение заявки");
             form.$("button[type=submit]").click();
             $(".feedback-send-message").waitUntil(visible, 15000);
         }
@@ -37,7 +37,7 @@ public class ActionForm {
             SelenideElement form = $("form.wpcf7-form.init");
             form.$("input[name=your-name]").setValue(customerName);
             form.$("input[name=your-email]").setValue(customerEmail);
-            form.$("textarea[name=your-message]").setValue("Нужна подсистема для керамогранита");
+            form.$("textarea[name=your-message]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
             Thread.sleep(10000);
             form.$("input[type=submit]").click();
             Thread.sleep(1000);

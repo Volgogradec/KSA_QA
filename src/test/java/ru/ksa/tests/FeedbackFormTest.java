@@ -32,7 +32,7 @@ public class FeedbackFormTest {
         SelenideElement form = $("form.form-contacts__form.feedback");
         form.$("input[name=form_name]").setValue(customerName);
         form.$("input[name=form_phone]").setValue(customerPhone);
-        form.$("textarea[name=form_message]").setValue("Пример текста");
+        form.$("textarea[name=form_message]").setValue("Сообщение по заявке");
         form.$("button[type=submit]").click();
         $(".feedback-send-message").waitUntil(visible, 500);
     }
@@ -46,6 +46,6 @@ public class FeedbackFormTest {
     @Test
     void sendOptimaGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormOptima(5);
+        actionForm.sendFormOptima(66);
     }
 }
