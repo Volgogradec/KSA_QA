@@ -54,4 +54,10 @@ public class FeedbackFormTest {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormDekot(1);
     }
+
+    @Test
+    void sendVentfasadGeneratedDataCycle() throws InterruptedException {
+        ActionForm actionForm = new ActionForm();
+        actionForm.sendFormVentfasad(1);
+    }
 }
