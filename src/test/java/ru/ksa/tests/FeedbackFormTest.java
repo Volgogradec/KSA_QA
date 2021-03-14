@@ -48,4 +48,10 @@ public class FeedbackFormTest {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormOptima(66);
     }
+
+    @Test
+    void sendDekotGeneratedDataCycle() throws InterruptedException {
+        ActionForm actionForm = new ActionForm();
+        actionForm.sendFormDekot(1);
+    }
 }
