@@ -52,9 +52,9 @@ public class ActionForm {
             String customerName = fakerRu.name().firstName() + " " + fakerRu.name().lastName();
             String customerPhone = fakerRu.phoneNumber().phoneNumber();
             String customerEmail = fakerEng.internet().safeEmailAddress();
-            String customerAdress = fakerRu.address().cityName() + " " + fakerRu.address().streetName();
+            String customerAdress = fakerRu.address().cityName() + ", " + fakerRu.address().streetName();
             String customerCompany = fakerRu.company().name();
-            open("https://dekot21.ru/kontakty");
+            open("https://dekot21.ru");
             SelenideElement form = $("form[name=mod-rscontact-contact-form]");
             form.$("input[name=mod_rscontact_full_name]").setValue(customerName);
             form.$("input[name=mod_rscontact_email]").setValue(customerEmail);
