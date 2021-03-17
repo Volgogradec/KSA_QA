@@ -60,4 +60,10 @@ public class FeedbackFormTest {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormVentfasad(1);
     }
+
+    @Test
+    void sendSilmaGeneratedDataCycle() throws InterruptedException {
+        ActionForm actionForm = new ActionForm();
+        actionForm.sendFormSilmaB24(1);
+    }
 }
