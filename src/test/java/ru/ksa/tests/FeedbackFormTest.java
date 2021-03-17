@@ -15,7 +15,7 @@ public class FeedbackFormTest {
     String customerName = faker.name().firstName() + " " + faker.name().lastName();
     String customerPhone = faker.phoneNumber().phoneNumber();
 
-    @Test
+//    @Test
     void sendHardCodeData() {
         open("https://vicolor-msk.ru/kontakty/");
         SelenideElement form = $("form.form-contacts__form.feedback");
@@ -26,7 +26,7 @@ public class FeedbackFormTest {
         $(".feedback-send-message").waitUntil(visible, 500);
     }
 
-    @Test
+//    @Test
     void sendGeneratedData() {
         open("https://vicolor-msk.ru/kontakty/");
         SelenideElement form = $("form.form-contacts__form.feedback");
@@ -37,7 +37,7 @@ public class FeedbackFormTest {
         $(".feedback-send-message").waitUntil(visible, 500);
     }
 
-    @Test
+//    @Test
     void sendVicolorGeneratedDataCycle() {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormVicolor(1);
@@ -53,6 +53,12 @@ public class FeedbackFormTest {
     void sendDekotGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormDekot(1);
+    }
+
+    @Test
+    void sendDekotGeneratedDataCycleB24() throws InterruptedException {
+        ActionForm actionForm = new ActionForm();
+        actionForm.sendFormDekotB24(45);
     }
 
     @Test

@@ -73,6 +73,34 @@ public class ActionForm {
         }
     }
 
+    public void sendFormDekotB24(int cycleNumber) throws InterruptedException {
+        for(int i = 0; i < cycleNumber; i++) {
+            Faker fakerRu = new Faker(new Locale("ru"));
+            Faker fakerEng = new Faker(new Locale("en"));
+            String customerName = fakerEng.name().firstName();
+            String customerLastname = fakerEng.name().lastName();
+            String customerPhone = fakerRu.phoneNumber().phoneNumber();
+            String customerEmail = fakerEng.internet().safeEmailAddress();
+            open("https://dekot21.ru");
+            SelenideElement form1 = $("div[class=b24-widget-button-block]");
+            form1.$("div[class=b24-widget-button-inner-block]").click();
+            SelenideElement form2 = $("div[class=\"b24-widget-button-social b24-widget-button-show\"]");
+            form2.$("a[class=\"b24-widget-button-social-item b24-widget-button-crmform\"]").click();
+            SelenideElement form3 = $("div[class=\"b24-form-content b24-form-padding-side\"]");
+            form3.$("input[name=name]").setValue(customerName);
+            form3.$("input[name=lastname]").setValue(customerLastname);
+            form3.$("input[name=phone]").setValue(customerPhone);
+            form3.$("input[name=email]").setValue(customerEmail);
+//            Клик по чекбоксу согласия работает. В форме по умолчанию она итак отмечена.
+//            form3.$("div[class=\"b24-form-field b24-form-field-agreement b24-form-control-agreement\"]").click();
+//            Thread.sleep(10000);
+            form3.$("button[type=submit]").click();
+            Thread.sleep(1000);
+//          Проверка отбивки об отправке не отработано, т.к. идёт переадресация на главную страницу
+//            $("div.alert.alert-success").shouldHave(text("Заявка принята"));
+        }
+    }
+
     // ventfasad.online
     public void sendFormVentfasad(int cycleNumber) throws InterruptedException {
         for(int i = 0; i < cycleNumber; i++) {
