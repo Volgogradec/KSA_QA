@@ -9,6 +9,7 @@ import java.util.Locale;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FeedbackFormTest {
     Faker faker = new Faker(new Locale("ru"));
@@ -83,5 +84,11 @@ public class FeedbackFormTest {
     void sendSilmaGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormSilmaB24(40);
+    }
+
+    @Test
+    void sendVentfasadeGeneratedDataCycle() throws InterruptedException {
+        ActionForm actionForm = new ActionForm();
+        actionForm.sendFormVentfasade(50);
     }
 }

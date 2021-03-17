@@ -2,7 +2,6 @@ package ru.ksa.tests;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
-import com.github.javafaker.Number;
 
 import java.util.Locale;
 
@@ -10,6 +9,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ActionForm {
     public void sendFormVicolor(int cycleNumber) {
@@ -215,6 +216,28 @@ public class ActionForm {
             Thread.sleep(1000);
 //          Проверка отбивки об отправке не отработано, т.к. идёт переадресация на главную страницу
 //            $("div.alert.alert-success").shouldHave(text("Заявка принята"));
+        }
+    }
+
+    // ventfasade.com
+    public void sendFormVentfasade(int cycleNumber) throws InterruptedException {
+        for(int i = 0; i < cycleNumber; i++) {
+            Faker fakerRu = new Faker(new Locale("ru"));
+            Faker fakerEng = new Faker(new Locale("en"));
+            String customerName = fakerRu.name().firstName() + " " + fakerRu.name().lastName();
+            String customerEmail = fakerEng.internet().safeEmailAddress();
+            String customerAdress = fakerRu.address().cityName() + ", " + fakerRu.address().streetName();
+            open("https://ventfasade.com/index.php?route=information/contact");
+            SelenideElement form = $("form[method=\"post\"]");
+            form.$("input[name=name]").setValue(customerName);
+            form.$("input[name=email]").setValue(customerEmail);
+            form.$("textarea[name=enquiry]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
+            Thread.sleep(5000);
+            form.$("input[type=submit]").click();
+            Thread.sleep(1000);
+            String resultPage = url();
+            String testUrl = "https://ventfasade.com/index.php?route=information/contact/success";
+            assertEquals(testUrl, resultPage);
         }
     }
 }
