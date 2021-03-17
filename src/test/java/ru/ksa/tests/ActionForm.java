@@ -2,6 +2,7 @@ package ru.ksa.tests;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
+import com.github.javafaker.Number;
 
 import java.util.Locale;
 
@@ -103,6 +104,33 @@ public class ActionForm {
 
     // ventfasad.online
     public void sendFormVentfasad(int cycleNumber) throws InterruptedException {
+        for(int i = 0; i < cycleNumber; i++) {
+            Faker fakerRu = new Faker(new Locale("ru"));
+            Faker fakerEng = new Faker(new Locale("en"));
+            String customerName = fakerRu.name().firstName() + " " + fakerRu.name().lastName();
+//            String customerPhone = fakerRu.phoneNumber().phoneNumber();
+            String customerPhone = fakerEng.number().digits(9);
+            String customerEmail = fakerEng.internet().safeEmailAddress();
+            String customerAdress = fakerRu.address().cityName() + ", " + fakerRu.address().streetName();
+            String customerCompany = fakerRu.company().name();
+            open("https://ventfasad.online/");
+            SelenideElement form = $("form[name=mod-rscontact-contact-form]");
+            form.$("input[name=mod_rscontact_full_name]").setValue(customerName);
+            form.$("input[name=mod_rscontact_email]").setValue(customerEmail);
+            form.$("input[name=mod_rscontact_address_1]").setValue(customerAdress);
+            form.$("input[name=mod_rscontact_mobile_phone]").setValue(customerPhone);
+            form.$("input[name=mod_rscontact_company]").setValue(customerCompany);
+            form.$("select[name=mod_rscontact_subject]").selectOptionByValue("Фасадная подсистема");
+            form.$("textarea[name=mod_rscontact_cf2]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
+            form.$("input[name=mod_rscontact_display_consent]").click();
+            Thread.sleep(1000);
+            form.$("button[type=submit]").click();
+            Thread.sleep(5000);
+            $("div.alert.alert-success").shouldHave(text("Заявка принята"));
+        }
+    }
+
+    public void sendFormVentfasadB24(int cycleNumber) throws InterruptedException {
         for(int i = 0; i < cycleNumber; i++) {
             Faker fakerRu = new Faker(new Locale("ru"));
             Faker fakerEng = new Faker(new Locale("en"));
