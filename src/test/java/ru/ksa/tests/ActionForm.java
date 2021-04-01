@@ -161,13 +161,13 @@ public class ActionForm {
     }
 
     // fasad-silma.ru
-    // Отправка формы не работает
     public void sendFormSilma(int cycleNumber) throws InterruptedException {
         for(int i = 0; i < cycleNumber; i++) {
             Faker fakerRu = new Faker(new Locale("ru"));
             Faker fakerEng = new Faker(new Locale("en"));
             String customerName = fakerRu.name().firstName() + " " + fakerRu.name().lastName();
-            String customerPhone = fakerRu.phoneNumber().phoneNumber();
+//            String customerPhone = fakerRu.phoneNumber().phoneNumber();
+            String customerPhone = fakerEng.number().digits(9);
             String customerEmail = fakerEng.internet().safeEmailAddress();
             String customerAdress = fakerRu.address().cityName() + ", " + fakerRu.address().streetName();
             String customerCompany = fakerRu.company().name();
@@ -179,14 +179,14 @@ public class ActionForm {
             form.$("input[name=mod_rscontact_mobile_phone]").setValue(customerPhone);
             form.$("input[name=mod_rscontact_company]").setValue(customerCompany);
             form.$("div[id=mod_rscontact_subject_797_chzn]").click();
-            form.$("ul.chzn-results li:nth-of-type(2)").click();
-//            form.$("select[name=mod_rscontact_subject]").selectOptionByValue("Фасадная подсистема");
+            form.$("ul.chzn-results li:nth-of-type(3)").click();
+            form.$("select[name=mod_rscontact_subject]").selectOptionByValue("Расчёт фасадной системы");
             form.$("textarea[name=mod_rscontact_cf2]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
             form.$("input[name=mod_rscontact_display_consent]").click();
             Thread.sleep(10000);
             form.$("button[type=submit]").click();
             Thread.sleep(1000);
-            $("div.alert.alert-success").shouldHave(text("Заявка принята"));
+            $("div.alert.alert-success").shouldHave(text("Спасибо за Ваше сообщение!"));
         }
     }
 
