@@ -52,10 +52,10 @@ public class FeedbackFormTest {
     @Test
     void sendDekotGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormDekot(1);
+        actionForm.sendFormDekot(50);
     }
 
-    @Test
+//    @Test
     void sendDekotGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormDekotB24(50);
@@ -64,10 +64,10 @@ public class FeedbackFormTest {
     @Test
     void sendVentfasadGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormVentfasad(1);
+        actionForm.sendFormVentfasad(50);
     }
 
-    @Test
+//    @Test
     void sendVentfasadGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormVentfasadB24(1);
@@ -79,7 +79,7 @@ public class FeedbackFormTest {
         actionForm.sendFormSilma(50);
     }
 
-    @Test
+//    @Test
     void sendSilmaGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormSilmaB24(50);
