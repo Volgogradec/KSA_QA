@@ -172,6 +172,8 @@ public class ActionForm {
             String customerAdress = fakerRu.address().cityName() + ", " + fakerRu.address().streetName();
             String customerCompany = fakerRu.company().name();
             open("https://www.fasad-silma.ru/");
+            SelenideElement b24form = $("span[class=b24-widget-button-popup-btn-hide]");
+            b24form.click();
             SelenideElement form = $("form[name=mod-rscontact-contact-form]");
             form.$("input[name=mod_rscontact_full_name]").setValue(customerName);
             form.$("input[name=mod_rscontact_email]").setValue(customerEmail);
@@ -180,7 +182,7 @@ public class ActionForm {
             form.$("input[name=mod_rscontact_company]").setValue(customerCompany);
             form.$("div[id=mod_rscontact_subject_797_chzn]").click();
             form.$("ul.chzn-results li:nth-of-type(3)").click();
-            form.$("select[name=mod_rscontact_subject]").selectOptionByValue("Расчёт фасадной системы");
+            form.$("select[name=mod_rscontact_subject]").selectOptionByValue("Фасадная подсистема");
             form.$("textarea[name=mod_rscontact_cf2]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
             form.$("input[name=mod_rscontact_display_consent]").click();
             Thread.sleep(10000);

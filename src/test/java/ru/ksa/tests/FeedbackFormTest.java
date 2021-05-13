@@ -43,51 +43,51 @@ public class FeedbackFormTest {
         actionForm.sendFormVicolor(1);
     }
 
-    @Test
+//    @Test
     void sendOptimaGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormOptima(50);
+        actionForm.sendFormOptima(1);
     }
 
     @Test
     void sendDekotGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormDekot(50);
+        actionForm.sendFormDekot(1);
     }
 
     @Test
     void sendDekotGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormDekotB24(50);
+        actionForm.sendFormDekotB24(1);
     }
 
     @Test
     void sendVentfasadGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormVentfasad(50);
+        actionForm.sendFormVentfasad(1);
     }
 
     @Test
     void sendVentfasadGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormVentfasadB24(50);
+        actionForm.sendFormVentfasadB24(1);
     }
 
-    @Test
+//    @Test
     void sendSilmaGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormSilma(50);
+        actionForm.sendFormSilma(1);
     }
 
     @Test
     void sendSilmaGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormSilmaB24(50);
+        actionForm.sendFormSilmaB24(1);
     }
 
     @Test
     void sendVentfasadeGeneratedDataCycle() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormVentfasade(50);
+        actionForm.sendFormVentfasade(1);
     }
 }
