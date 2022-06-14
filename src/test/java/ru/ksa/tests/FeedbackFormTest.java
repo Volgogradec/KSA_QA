@@ -67,7 +67,7 @@ public class FeedbackFormTest {
         actionForm.sendFormVentfasad(1);
     }
 
-    @Test
+//    @Test
     void sendVentfasadGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
         actionForm.sendFormVentfasadB24(1);
@@ -82,7 +82,7 @@ public class FeedbackFormTest {
     @Test
     void sendSilmaGeneratedDataCycleB24() throws InterruptedException {
         ActionForm actionForm = new ActionForm();
-        actionForm.sendFormSilmaB24(1);
+        actionForm.sendFormSilmaB24(90);
     }
 
     @Test

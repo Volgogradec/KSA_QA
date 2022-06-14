@@ -40,7 +40,7 @@ public class ActionForm {
             SelenideElement form = $("form.wpcf7-form.init");
             form.$("input[name=your-name]").setValue(customerName);
             form.$("input[name=your-email]").setValue(customerEmail);
-            form.$("textarea[name=your-message]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
+            form.$("textarea[name=your-message]").setValue("Серёжа, обманывать не хорошо! Долг сам себя не заплатит. Подключайся!");
             Thread.sleep(10000);
             form.$("input[type=submit]").click();
             Thread.sleep(1000);
@@ -148,7 +148,7 @@ public class ActionForm {
             form3.$("input[name=phone]").setValue(customerPhone);
             form3.$("input[name=email]").setValue(customerEmail);
             form3.$("input[name=name]").setValue(customerName);
-            form3.$("textarea[class=\"b24-form-control b24-form-control-not-empty\"]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
+            form3.$("textarea[class=\"b24-form-control b24-form-control-not-empty\"]").setValue("Серёжа, обманывать не хорошо! Долг сам себя не заплатит. Подключайся!");
             form3.$("input[class=b24-form-control]").setValue(customerCompany);
 //            Клик по чекбоксу согласия работает. В форме по умолчанию она итак отмечена.
 //            form3.$("div[class=\"b24-form-field b24-form-field-agreement b24-form-control-agreement\"]").click();
@@ -210,7 +210,7 @@ public class ActionForm {
             form3.$("input[name=lastname]").setValue(customerLastname);
             form3.$("input[name=phone]").setValue(customerPhone);
             form3.$("input[name=email]").setValue(customerEmail);
-            form3.$("textarea[class=\"b24-form-control\"]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
+            form3.$("input[class=\"b24-form-control\"]").setValue("Serozha, obmanyvat nekhorosho! Dolg sam sebya ne zaplatit. Podklyuchaysya!");
 //            Клик по чекбоксу согласия работает. В форме по умолчанию она итак отмечена.
 //            form3.$("div[class=\"b24-form-field b24-form-field-agreement b24-form-control-agreement\"]").click();
 //            Thread.sleep(10000);
@@ -233,7 +233,7 @@ public class ActionForm {
             SelenideElement form = $("form[method=\"post\"]");
             form.$("input[name=name]").setValue(customerName);
             form.$("input[name=email]").setValue(customerEmail);
-            form.$("textarea[name=enquiry]").setValue("Серёжа, долг сам себя не заплатит. Подключайся!");
+            form.$("textarea[name=enquiry]").setValue("Серёжа, обманывать не хорошо! Долг сам себя не заплатит. Подключайся!");
             Thread.sleep(5000);
             form.$("input[type=submit]").click();
             Thread.sleep(1000);
